@@ -1,0 +1,25 @@
+{
+  "name": "trackem",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel public/index.html",
+    "build": "parcel build --dist-dir prod --public-url . --no-source-maps",
+    "deploy": "npm run build && gh-pages -d prod"
+  },
+  "author": "ike!!",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "use-debounce": "^8.0.1"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "eslint": "^8.16.0",
+    "eslint-plugin-react": "^7.30.0",
+    "gh-pages": "^4.0.0",
+    "parcel": "^2.6.0",
+    "process": "^0.11.10"
+  }
+}
