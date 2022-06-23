@@ -1,5 +1,8 @@
 .SearchEngine__container {
+  background-color: white;
   width: 100%;
+}
+.SearchEngine__main {
   display: flex;
 }
 
@@ -9,17 +12,27 @@
   width: 100%;
   padding: 15px;
   font-size: 1.2rem;
+  letter-spacing: 0.15rem;
 }
 
 .SearchEngine__button {
   background-color: white;
   border: 1px solid var(--black);
   font-size: 1.2rem;
-  width: 20%;
   cursor: pointer;
+  padding: 0 30px;
 }
 
 .SearchEngine__button:hover {
   background-color: var(--black);
   color: white;
+}
+
+.SearchEngine__predictCourier {
+  color: gray;
+  margin: 15px;
+}
+.SearchEngine__predictCourier--courier {
+  color: var(--black);
+  font-weight: 900;
 }

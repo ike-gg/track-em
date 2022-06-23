@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useDebounce } from "use-debounce";
+// import { useDebounce } from "use-debounce";
+import { getTracking } from "ts-tracking-number";
 
 import "./SearchEngine.css";
 
@@ -8,23 +9,41 @@ import SearchButton from "./SearchButton";
 
 const SearchEngine = () => {
   const [trackingInput, setTrackingInput] = useState("");
-  const timeToDebounceTrackingCall = 300;
+  const [predictCourier, setPredictCourier] = useState({});
+  // const timeToDebounceTrackingCall = 300;
   // const [debounceTracking] = useDebounce(
   //   trackingInput,
   //   timeToDebounceTrackingCall
   // );
 
-  // useEffect(() => {
-  //   fetch(`https://api.tracktry.com/v1`, {});
-  // }, [debounceTracking]);
+  useEffect(() => {
+    const courier = getTracking(trackingInput);
+    if (courier) {
+      setPredictCourier(courier);
+      console.log(courier);
+    } else {
+      setPredictCourier({});
+    }
+  }, [trackingInput]);
 
   return (
     <section className="SearchEngine__container">
-      <SearchInput
-        trackingInput={trackingInput}
-        setTrackingInput={setTrackingInput}
-      />
-      <SearchButton />
+      <main className="SearchEngine__main">
+        <SearchInput
+          trackingInput={trackingInput}
+          setTrackingInput={setTrackingInput}
+        />
+        <SearchButton courier={predictCourier} />
+      </main>
+      {predictCourier.name && (
+        <p className="SearchEngine__predictCourier">
+          We detect that this is a{" "}
+          <span className="SearchEngine__predictCourier--courier">
+            {predictCourier.name}
+          </span>{" "}
+          parcel!
+        </p>
+      )}
     </section>
   );
 };
